@@ -400,11 +400,90 @@ public class BurhanQuest {
                 break;
             case "5":
                 // TODO: Menjalankan quest
-                System.out.println("Belum diimplementasikan");
+                boolean isSucces = false;
+                while(!isSucces){
+                    System.out.print("Masukkan ID Quest yang ingin diambil (atau 'X'/'x' untuk kembali): ");
+                    String idQuestTarget = input.nextLine().trim();
+                    if(idQuestTarget.equalsIgnoreCase("x")){
+                        break;
+                    }
+
+                    String ketemuQuest ="";
+                    Scanner readQuest = new Scanner(questData);
+                    while(readQuest.hasNextLine()){
+                        String baris = readQuest.nextLine();
+                        if(baris.toUpperCase().startsWith(idQuestTarget.toUpperCase() + NAME_IDENTIFIER)){
+                            ketemuQuest  = baris;
+                            break;
+                        }
+                    }
+
+                    if(ketemuQuest.equals("") || !ketemuQuest.contains("tersedia \ud83d\udfe2")){
+                        System.out.println("Quest tidak ditemukan atau sudah diambil/selesai.");
+                        continue;
+                    }
+                    System.out.print("Masukkan ID Pengembara yang akan mengambil quest (atau 'X'/'x' untuk kembali): ");
+                    String idPengembaraTarget = input.nextLine().trim();
+                    if(idPengembaraTarget.equalsIgnoreCase("x")){
+                        break;
+                    }
+                    String ketemuPengembara="";
+                    Scanner readTraveler = new Scanner(travelerData);
+                    while(readTraveler.hasNextLine()){
+                        String baris = readTraveler.nextLine();
+                        if(baris.toUpperCase().startsWith(idPengembaraTarget.toUpperCase() + NAME_IDENTIFIER)){
+                            //diubah ke upper case karena case insensitive
+                            ketemuPengembara = baris;
+                            break;
+                        }
+                        
+                    }
+                    if(ketemuPengembara.equals("") || !ketemuPengembara.contains("kosong  \u2705")){
+                        System.out.println("Pengembara tidak ditemukan atau tidak memenuhi persyaratan untuk mengambil quest.");
+                        continue;
+                        // menggunakan continue agar jika pengembara tidak ditemukan atau tidak memenuhi syarat, program kembali di input id quest
+                    }
+                    String bintangQuest = ketemuQuest.substring(ketemuQuest.indexOf(DIFFICULTY_IDENTIFIER)+ 1, ketemuQuest.indexOf(STATUS_IDENTIFIER));
+                    int levelPengembara = Integer.parseInt(ketemuPengembara.substring(ketemuPengembara.indexOf(LEVEL_IDENTIFIER)+1, ketemuPengembara.indexOf(EXP_IDENTIFIER)));
+                    boolean levelCukup = false;
+                    // mengecek kesesuaian level pengembaara dengan kesulitan quest
+                    if(bintangQuest.equals("\u2605\u2605\u2605")){//level sulit
+                        if(levelPengembara>= 16){
+                            levelCukup = true;
+                        }
+                    }  else if(bintangQuest.equals("\u2605\u2605")){//level menengah
+                            if(levelPengembara>= 6){
+                                levelCukup = true;
+                            }
+                    }else if(bintangQuest.equals("\u2605")){//level mudah
+                        levelCukup = true;
+                        // level mudah tidak ada syaarat karena semua pengembara dengan level dari 1-20 dapat mengambil quest
+                    }
+                    //update status
+                    if(levelCukup){
+                        questData = questData.replace(ketemuQuest, ketemuQuest.replace("tersedia \ud83d\udfe2", "diambil-"+idPengembaraTarget.toUpperCase()+"\u231b" ));
+                        travelerData = travelerData.replace(ketemuPengembara, ketemuPengembara.replace("kosong  \u2705", "dalam quest \u274c"));
+                        isSucces = true;
+                    }else{//jika level tidak sesuai
+                        System.out.println("Pengembara tidak ditemukan atau tidak memenuhi persyaratan untuk mengambil quest.");
+                    }
+                    
+                }System.out.println("Quest berhasil diambil");
                 break;
             case "6":
                 // TODO: Menyelesaikan quest
-                System.out.println("Belum diimplementasikan");
+                boolean isFinish = false;
+                while(!isFinish){
+                    System.out.print("Masukkan ID Quest yang ingin diselesaikan (atau 'X'/'x' untuk kembali:)");
+                    String idQuestTarget = input.nextLine();
+                    if(idQuestTarget.equalsIgnoreCase("x")){
+                        break;
+                    }
+                    
+
+
+                }
+
                 break;
             case "7":
                 // TODO: Filter daftar quest
