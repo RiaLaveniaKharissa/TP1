@@ -188,7 +188,11 @@ public class BurhanQuest {
                     }
                     // masukkan input ke variabel travelerData
                     travelerData += "P" + (travelerId++)  + NAME_IDENTIFIER + namaTraveler+
+<<<<<<< HEAD
+                    LEVEL_IDENTIFIER + levelTraveler +EXP_IDENTIFIER+ nilaiExp+ STATUS_IDENTIFIER + "kosong \u2705" +"\n";
+=======
                     LEVEL_IDENTIFIER + levelTraveler +EXP_IDENTIFIER+ nilaiExp+ STATUS_IDENTIFIER + "kosong  \u2705" +"\n";
+>>>>>>> 7a7a484 (Pindahin ke branch main)
                     isInputValid= true;
                     
                 }else{// jika input tidak valid
@@ -396,7 +400,11 @@ public class BurhanQuest {
                         nilaiExp = (long) (5000 * Math.pow(2, levelAngka-2));
                     }
                     travelerData += "P" + (travelerId++)  + NAME_IDENTIFIER + namaTraveler+
+<<<<<<< HEAD
+                    LEVEL_IDENTIFIER + levelTraveler +EXP_IDENTIFIER+ nilaiExp + STATUS_IDENTIFIER + "kosong \u2705" +"\n";
+=======
                     LEVEL_IDENTIFIER + levelTraveler +EXP_IDENTIFIER+ nilaiExp + STATUS_IDENTIFIER + "kosong  \u2705" +"\n";
+>>>>>>> 7a7a484 (Pindahin ke branch main)
                     isAddingTraveler= true;
                     
                 }else{
@@ -448,7 +456,11 @@ public class BurhanQuest {
                         }
                         
                     }
+<<<<<<< HEAD
+                    if(ketemuPengembara.equals("") || !ketemuPengembara.contains("kosong \u2705")){
+=======
                     if(ketemuPengembara.equals("") || !ketemuPengembara.contains("kosong  \u2705")){
+>>>>>>> 7a7a484 (Pindahin ke branch main)
                         System.out.println("Pengembara tidak ditemukan atau tidak memenuhi persyaratan untuk mengambil quest.");
                         continue;
                         // menggunakan continue agar jika pengembara tidak ditemukan atau tidak memenuhi syarat, program kembali di input id quest
@@ -472,7 +484,11 @@ public class BurhanQuest {
                     //update status
                     if(levelCukup){
                         questData = questData.replace(ketemuQuest, ketemuQuest.replace("tersedia \ud83d\udfe2", "diambil-"+idPengembaraTarget.toUpperCase()+" \u231b" ));
+<<<<<<< HEAD
+                        travelerData = travelerData.replace(ketemuPengembara, ketemuPengembara.replace("kosong \u2705", "dalam quest \u274c"));
+=======
                         travelerData = travelerData.replace(ketemuPengembara, ketemuPengembara.replace("kosong  \u2705", "dalam quest \u274c"));
+>>>>>>> 7a7a484 (Pindahin ke branch main)
                         isSucces = true;
                     }else{//jika level tidak sesuai
                         System.out.println("Pengembara tidak ditemukan atau tidak memenuhi persyaratan untuk mengambil quest.");
