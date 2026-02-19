@@ -187,12 +187,7 @@ public class BurhanQuest {
                         nilaiExp = (long) (5000 * Math.pow(2, levelAngka-2));
                     }
                     // masukkan input ke variabel travelerData
-                    travelerData += "P" + (travelerId++)  + NAME_IDENTIFIER + namaTraveler+
-<<<<<<< HEAD
-                    LEVEL_IDENTIFIER + levelTraveler +EXP_IDENTIFIER+ nilaiExp+ STATUS_IDENTIFIER + "kosong \u2705" +"\n";
-=======
-                    LEVEL_IDENTIFIER + levelTraveler +EXP_IDENTIFIER+ nilaiExp+ STATUS_IDENTIFIER + "kosong  \u2705" +"\n";
->>>>>>> 7a7a484 (Pindahin ke branch main)
+                    travelerData += "P" + (travelerId++)  + NAME_IDENTIFIER + namaTraveler+LEVEL_IDENTIFIER + levelTraveler +EXP_IDENTIFIER+ nilaiExp+ STATUS_IDENTIFIER + "kosong \u2705" +"\n";
                     isInputValid= true;
                     
                 }else{// jika input tidak valid
@@ -399,12 +394,7 @@ public class BurhanQuest {
                     if(levelAngka>1){
                         nilaiExp = (long) (5000 * Math.pow(2, levelAngka-2));
                     }
-                    travelerData += "P" + (travelerId++)  + NAME_IDENTIFIER + namaTraveler+
-<<<<<<< HEAD
-                    LEVEL_IDENTIFIER + levelTraveler +EXP_IDENTIFIER+ nilaiExp + STATUS_IDENTIFIER + "kosong \u2705" +"\n";
-=======
-                    LEVEL_IDENTIFIER + levelTraveler +EXP_IDENTIFIER+ nilaiExp + STATUS_IDENTIFIER + "kosong  \u2705" +"\n";
->>>>>>> 7a7a484 (Pindahin ke branch main)
+                    travelerData += "P" + (travelerId++)  + NAME_IDENTIFIER + namaTraveler+LEVEL_IDENTIFIER + levelTraveler +EXP_IDENTIFIER+ nilaiExp + STATUS_IDENTIFIER + "kosong \u2705" +"\n";
                     isAddingTraveler= true;
                     
                 }else{
@@ -456,11 +446,7 @@ public class BurhanQuest {
                         }
                         
                     }
-<<<<<<< HEAD
                     if(ketemuPengembara.equals("") || !ketemuPengembara.contains("kosong \u2705")){
-=======
-                    if(ketemuPengembara.equals("") || !ketemuPengembara.contains("kosong  \u2705")){
->>>>>>> 7a7a484 (Pindahin ke branch main)
                         System.out.println("Pengembara tidak ditemukan atau tidak memenuhi persyaratan untuk mengambil quest.");
                         continue;
                         // menggunakan continue agar jika pengembara tidak ditemukan atau tidak memenuhi syarat, program kembali di input id quest
@@ -484,11 +470,7 @@ public class BurhanQuest {
                     //update status
                     if(levelCukup){
                         questData = questData.replace(ketemuQuest, ketemuQuest.replace("tersedia \ud83d\udfe2", "diambil-"+idPengembaraTarget.toUpperCase()+" \u231b" ));
-<<<<<<< HEAD
                         travelerData = travelerData.replace(ketemuPengembara, ketemuPengembara.replace("kosong \u2705", "dalam quest \u274c"));
-=======
-                        travelerData = travelerData.replace(ketemuPengembara, ketemuPengembara.replace("kosong  \u2705", "dalam quest \u274c"));
->>>>>>> 7a7a484 (Pindahin ke branch main)
                         isSucces = true;
                     }else{//jika level tidak sesuai
                         System.out.println("Pengembara tidak ditemukan atau tidak memenuhi persyaratan untuk mengambil quest.");
@@ -579,6 +561,7 @@ public class BurhanQuest {
             case "7":
                 // TODO: Filter daftar quest
                 boolean isValid = false;
+                boolean ditemukan = false;
                 while(!isValid){
                     
                     System.out.println("Filter daftar quest");
@@ -600,13 +583,13 @@ public class BurhanQuest {
                         }
 
                         if(statusValid){
-                            System.out.println("Daftar quest terfilter:");
                             Scanner readQuest = new Scanner(questData);
                             while(readQuest.hasNextLine()){
                                 
                                 String baris = readQuest.nextLine();
-                                if(baris.toUpperCase().contains(filterstatus.toUpperCase())){
-
+                                if(baris.toUpperCase().contains(filterstatus.toUpperCase())){    
+                                    System.out.println("Daftar quest terfilter:");
+                                    
                                     String idQuest = baris.substring(0, baris.indexOf(NAME_IDENTIFIER));
                                     System.out.println("ID Quest: "+ idQuest);
     
@@ -618,26 +601,33 @@ public class BurhanQuest {
     
                                     String rewardQuest = baris.substring(baris.indexOf(REWARD_IDENTIFIER)+1, baris.indexOf(EXP_IDENTIFIER));
                                     System.out.println("Reward Quest: "+ rewardQuest);
-    
+                                    
                                     String bonusExpQuest = baris.substring(baris.indexOf(EXP_IDENTIFIER)+1, baris.indexOf(DIFFICULTY_IDENTIFIER));
                                     System.out.println("Bonus Exp Quest: "+ bonusExpQuest + " poin exp");
     
                                     String tingkatKesulitanQuest = baris.substring(baris.indexOf(DIFFICULTY_IDENTIFIER)+1, baris.indexOf(STATUS_IDENTIFIER));
                                     System.out.println("Tingkat Kesulitan Quest: "+ tingkatKesulitanQuest);
-    
+                                    
                                     String statusQuest = baris.substring(baris.indexOf(STATUS_IDENTIFIER)+1);
                                     System.out.println("Status Quest: "+ statusQuest);
-    
+                                    
+                                    ditemukan = true;
+                                    
+                                    
                                     System.out.println();
+                                }
+                                if(!ditemukan){
+                                    System.out.println("Data tidak ditemukan.");
+                                    break;
                                 }
                                 
 
                                 }
                                 isValid = true; 
                                 
-                    }else{
-                        System.out.println("Pilihan tidak valid, harap masukkan pilihan dengan benar.");
-                        
+                    }
+                    else{
+                        System.out.println("Pilihan tidak valid, harap masukkan pilihan dengan benar.");        
                     }
 
                 }
@@ -653,6 +643,7 @@ public class BurhanQuest {
                         }
 
                         if(kesulitanValid){
+                            ditemukan = false;
                             // menyesuaikan status kesulitan dengan jumlah bintang
                             String bintangTarget = "";
                             if(filterkesulitan.equalsIgnoreCase("mudah")){
@@ -665,12 +656,12 @@ public class BurhanQuest {
                             }
 
 
-                            System.out.println("Daftar quest terfilter:");
                             Scanner readQuest = new Scanner(questData);
                             while(readQuest.hasNextLine()){
                                 String baris = readQuest.nextLine();
                                 String bintangDiBaris = baris.substring(baris.indexOf(DIFFICULTY_IDENTIFIER)+1, baris.indexOf(STATUS_IDENTIFIER));
                                 if(bintangDiBaris.equals(bintangTarget)){
+                                    System.out.println("Daftar quest terfilter:");
 
                                     String idQuest = baris.substring(0, baris.indexOf(NAME_IDENTIFIER));
                                     System.out.println("ID Quest: "+ idQuest);
@@ -692,36 +683,157 @@ public class BurhanQuest {
     
                                     String statusQuest = baris.substring(baris.indexOf(STATUS_IDENTIFIER)+1);
                                     System.out.println("Status Quest: "+ statusQuest);
-    
+                                    // jika data ada, maka variabel 'ditemukan' menjadi true
+                                    ditemukan = true;
                                     System.out.println();
                                 }
-                                
-
+                                // jika kesulitan yang diinput valid, tetapi data yang dicari tidak ada
+                                if(!ditemukan){
+                                    System.out.println("Data tidak ditemukan.");
+                                }
                                 }
                                 isValid = true; 
                                 
                     }
                     else{// jika inputnya tidak valid/sesuai
-                        System.out.println("Pilihan tidak valid, harap masukkan pilihan dengan benar.");
-                
+                        System.out.println("Pilihan tidak valid, harap masukkan pilihan dengan benar.");                
                     }
-
                 } 
             }  
                 break;
 
             case "8":
                 // TODO: Filter daftar pengembara
-                System.out.println("Belum diimplementasikan");
+                isValid = false;
+                
+                while(!isValid){
+                    
+                    System.out.println("Filter daftar pengembara");
+                    System.out.println("1. Filter berdasarkan status");
+                    System.out.println("2. Filter berdasarkan rentang level");
+                    System.out.println("X. Kembali ke menu utama");
+                    System.out.print("Masukkan tipe filter: ");
+                    String filterInput = input.nextLine().trim();
+                    if(filterInput.equalsIgnoreCase("x")){
+                        break;
+                    }
+
+                    if(filterInput.equals("1")){
+                        System.out.print("Masukkan status pengembara yang ingin difilter (kosong/ dalam quest), masukkan 'x' atau 'X' untuk kembali ke menu utama: ");
+                        String filterstatus = input.nextLine().trim();
+                        boolean statusValid= filterstatus.trim().matches("(?i)^(kosong|dalam quest)$");
+                        if(filterstatus.equalsIgnoreCase("x")){
+                        break;
+                        }
+
+                        if(statusValid){
+                            Scanner readQ = new Scanner(questData);
+                            while(readQ.hasNextLine()){
+                                String baris = readQ.nextLine();
+                                if(baris.toUpperCase().contains(filterstatus.toUpperCase())){    
+                                    System.out.println("Daftar pengembara terfilter:");
+                                    
+                                    String idQuest = baris.substring(0, baris.indexOf(NAME_IDENTIFIER));
+                                    System.out.println("ID Quest: "+ idQuest);
+    
+                                    String namaQuest = baris.substring(baris.indexOf(NAME_IDENTIFIER)+ 1, baris.indexOf(DESC_IDENTIFIER));
+                                    System.out.println("Nama Quest: "+ namaQuest);
+    
+                                    String deskripsiQuest = baris.substring(baris.indexOf(DESC_IDENTIFIER )+ 1, baris.indexOf(REWARD_IDENTIFIER));
+                                    System.out.println("Deskripsi Quest: "+ deskripsiQuest);
+    
+                                    String rewardQuest = baris.substring(baris.indexOf(REWARD_IDENTIFIER)+1, baris.indexOf(EXP_IDENTIFIER));
+                                    System.out.println("Reward Quest: "+ rewardQuest);
+                                    
+                                    String bonusExpQuest = baris.substring(baris.indexOf(EXP_IDENTIFIER)+1, baris.indexOf(DIFFICULTY_IDENTIFIER));
+                                    System.out.println("Bonus Exp Quest: "+ bonusExpQuest + " poin exp");
+    
+                                    String tingkatKesulitanQuest = baris.substring(baris.indexOf(DIFFICULTY_IDENTIFIER)+1, baris.indexOf(STATUS_IDENTIFIER));
+                                    System.out.println("Tingkat Kesulitan Quest: "+ tingkatKesulitanQuest);
+                                    
+                                    String statusQuest = baris.substring(baris.indexOf(STATUS_IDENTIFIER)+1);
+                                    System.out.println("Status Quest: "+ statusQuest);
+
+                                    
+                                    
+                                    System.out.println();
+                                }else{ // jika filter status yang diinput tidak ada di baris
+                                    System.out.println("Pilihan tidak valid, harap masukkan pilihan dengan benar");
+                                }
+
+        
+                                }
+                                // setelah readQ habis dibaca, isValid bernilai true agar loop berhenti
+                                isValid = true; 
+
+                            }
+                            else{
+                                System.out.println("Pilihan tidak valid, harap masukkan pilihan dengan benar.");        
+                            }
+       
+                    }else if (filterInput.equals("2")){ // jika input user 2
+                        System.out.print("Masukkan rentang level (inklusif) yang ingin difilter (mudah/menengah/sulit), masukkan 'x' atau 'X' untuk kembali ke menu utama: ");
+                        //input batas bawah
+                        System.out.print("Masukkan batas bawah: ");
+                        String batasBawah = input.nextLine().trim();
+                        //input batas atas
+                        System.out.print("Masukkan batas atas: ");
+                        String batasAtas = input.nextLine().trim();
+                        if(batasBawah.equalsIgnoreCase("x") || batasAtas.equalsIgnoreCase("x")){
+                            System.out.println("break dari loop, kembali kemenu utama");//-----------------------> jgn lupa diqapus wokk
+                            break;// break dari loop, kembali ke menu utama
+                        }
+
+                        boolean levelValid = false;
+                        // cek validitas input batas bawah dan batas atas
+                        int levelAngkaBawah = Integer.parseInt(batasBawah);// karena level masih dalam bentuk string, maka diubah ke int di step ini
+                        int levelAngkaAtas = Integer.parseInt(batasBawah);
+                        if((levelAngkaBawah>=1 && levelAngkaBawah<=20) && (levelAngkaAtas >= 1 && levelAngkaAtas<=20)){//jika level dalam rentang 1-20
+                            
+                            if(levelAngkaBawah> levelAngkaAtas){
+                                System.out.println("Rentang level tidak valid. Batas bawah harus lebih kecil atau sama dengan batas atas");
+                                break;
+                            }else{
+                                levelValid = true;
+                            }
+                        }
+            
+                        
+                        if(levelValid){// jika level yang diinput valid
+
+                            Scanner readT = new Scanner(travelerData);
+                            while(readT.hasNextLine()){
+                                String baris = readT.nextLine();
+                                
+                                
+
+                                ditemukan = true;
+                                System.out.println();
+                                }
+                                // jika kesulitan yang diinput valid, tetapi data yang dicari tidak ada
+                                
+                                }else{//jika level yang diinput tidak valid
+                                    System.out.println("Pilihan tidakvalid, harqap masukkan pilihan dengaan benar");
+                                }
+
+                                isValid = true; 
+                                
+                    }else{// jika inputnya bukan 1 maupun 2
+                        System.out.println("Pilihan tidak valid, harap masukkan pilihan dengan benar.");                
+                    }
+                } 
+              
                 break;
             case "9":
                 // TODO: Tampilkan daftar quest terurut
                 System.out.println("Belum diimplementasikan");
                 break;
+
             case "10":
                 // TODO: Tampilkan daftar pengembara terurut
                 System.out.println("Belum diimplementasikan");
                 break;
+
             case "11":
                 // TODO: Keluar
                 System.out.println("Terima kasih telah menggunakan BurhanQuest!");
@@ -735,11 +847,12 @@ public class BurhanQuest {
                 break;
         }
     }
-    }
+ }
+}
     
     
 
-                }    
+                
                     
 
 
